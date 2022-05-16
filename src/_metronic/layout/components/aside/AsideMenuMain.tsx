@@ -96,6 +96,13 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/travel/travelhandbooks' title='Cẩm nang du lịch' hasBullet={true} />
       </AsideMenuItemWithSub>
 
+      <AsideMenuItemWithSub to='/thuenha' title='Thuê nhà trọ' icon='/media/icons/duotune/social/soc003.svg' fontIcon='bi-person'>
+        <AsideMenuItem to='/thuenha/loainhas' title='Loại nhà' hasBullet={true} />
+        <AsideMenuItem to='/thuenha/dientichnhas' title='Diện tích nhà' hasBullet={true} />
+        <AsideMenuItem to='/thuenha/mucgiathuenhas' title='Mức giá thuê nhà' hasBullet={true} />
+        <AsideMenuItem to='/thuenha/thoigianthuenhas' title='Thời gian thuê nhà' hasBullet={true} />
+      </AsideMenuItemWithSub>
+
       <AsideMenuItemWithSub to='/medical' title='Y tế' icon='/media/icons/duotune/medicine/med001.svg' fontIcon='bi-person'>
         <AsideMenuItem to='/medical/medicalhotlines' title='Danh bạ khẩn cấp' hasBullet={true} />
         <AsideMenuItem to='/medical/diseases' title='Danh mục bệnh' hasBullet={true} />

@@ -30,6 +30,7 @@ const PrivateRoutes = () => {
   const MedicalPage = lazy(() => import('../pages/medical/MedicalPage'));
   const TravelPage = lazy(() => import('../pages/travel/TravelPage'));
   const NewPage = lazy(() => import('../pages/new/NewPage'));
+  const ThueNhaPage = lazy(() => import('../pages/thuenha/ThueNhaPage'));
 
   //const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'));
 
@@ -69,6 +70,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <NewPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='thuenha/*'
+          element={
+            <SuspensedView>
+              <ThueNhaPage />
             </SuspensedView>
           }
         />

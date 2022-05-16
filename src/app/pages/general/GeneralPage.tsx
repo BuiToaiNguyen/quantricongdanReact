@@ -6,8 +6,6 @@ import AreasPage from './areas/AreasPage';
 import PlacesPage from './places/PlacesPage';
 import HomePageInforsPage from './homepageinfors/HomePageInforsPage';
 
-import SeaGamesPage from './seagames/SeaGamesPage';
-
 const GeneralPage = () => {
   return (
     <Routes>
@@ -20,14 +18,7 @@ const GeneralPage = () => {
             </>
           }
         />
-        <Route
-          path='seagames'
-          element={
-            <>
-              <SeaGamesPage />
-            </>
-          }
-        />
+
         <Route
           path='categories'
           element={
