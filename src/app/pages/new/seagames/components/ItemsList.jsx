@@ -4,19 +4,17 @@ import {useDispatch, useSelector} from 'react-redux';
 import _ from 'lodash';
 import {Popconfirm} from 'antd';
 import {toast} from 'react-toastify';
-
+import clsx from 'clsx';
 import * as actionsModal from 'src/setup/redux/modal/Actions';
 import {requestPOST, requestDELETE} from 'src/utils/baseAPI';
+import {toAbsoluteUrl} from 'src/utils/AssetHelpers';
 
 import TableList from 'src/app/components/TableList';
 import ModalItem from './ChiTietModal';
-import AreaInfoModal from './AreaInfoModal';
 
 const UsersList = () => {
   const dispatch = useDispatch();
   const modalVisible = useSelector((state) => state.modal.modalVisible);
-  const modalAreaInfoVisible = useSelector((state) => state.modal.modalAreaInfoVisible);
-
   const dataSearch = useSelector((state) => state.modal.dataSearch);
   const random = useSelector((state) => state.modal.random);
 
@@ -27,22 +25,20 @@ const UsersList = () => {
   const [offset, setOffset] = useState(1);
 
   useEffect(() => {
-    console.log(dataSearch);
-
     const fetchData = async () => {
       try {
         setLoading(true);
         const res = await requestPOST(
-          `api/v1/areas/search`,
+          `api/v1/seagames/search`,
           _.assign(
             {
               advancedSearch: {
-                fields: ['name', 'code', 'pathWithType', 'slug','path'],
+                fields: ['title'],
                 keyword: dataSearch?.keywordSearch ?? null,
               },
               pageNumber: offset,
               pageSize: size,
-              orderBy: ['level', 'code'],
+              orderBy: ['createdOn desc'],
             },
             dataSearch
           )
@@ -67,18 +63,18 @@ const UsersList = () => {
         dispatch(actionsModal.setModalVisible(true));
 
         break;
-      case 'thong-tin':
-        dispatch(actionsModal.setDataModal(item));
-        dispatch(actionsModal.setModalAreaInfoVisible(true));
-        break;
+
       case 'delete':
-        var res = await requestDELETE(`api/v1/areas/${item.id}`);
+        var res = await requestDELETE(`api/v1/seagames/${item.id}`);
         if (res) {
           toast.success('Thao tác thành công!');
           dispatch(actionsModal.setRandom());
         } else {
           toast.error('Thất bại, vui lòng thử lại!');
         }
+        break;
+      case 'XoaVanBan':
+        //handleXoaVanBan(item);
         break;
 
       default:
@@ -88,14 +84,43 @@ const UsersList = () => {
 
   const columns = [
     {
-      title: 'Tên',
-      dataIndex: 'pathWithType',
-      key: 'pathWithType',
+      title: 'Ảnh',
+      width: '10%',
+      dataIndex: 'image',
+      key: 'image',
+      render: (text, record, index) => {
+        return (
+          <>
+            <div className='d-flex align-items-center'>
+              {/* begin:: Avatar */}
+              <div className='symbol overflow-hidden me-3'>
+                <div>
+                  {record.image ? (
+                    <img
+                      src={record.image.includes('https://') || record.image.includes('http://') ? record.image : toAbsoluteUrl(`/${record.image}`)}
+                      alt={record.name}
+                      className='w-100 symbol-label'
+                    />
+                  ) : (
+                    <div
+                      className={clsx(
+                        'symbol-label fs-3',
+                        `bg-light-${record.isVerified ? 'danger' : ''}`,
+                        `text-${record.isVerified ? 'danger' : ''}`
+                      )}
+                    ></div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      },
     },
     {
-      title: 'Mã',
-      dataIndex: 'code',
-      key: 'code',
+      title: 'Tiêu đề',
+      dataIndex: 'title',
+      key: 'title',
     },
 
     {
@@ -116,16 +141,7 @@ const UsersList = () => {
             >
               <i className='fa fa-eye'></i>
             </a>
-            <a
-              className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 mb-1'
-              data-toggle='m-tooltip'
-              title='Thông tin chi tiết'
-              onClick={() => {
-                handleButton(`thong-tin`, record);
-              }}
-            >
-              <i className='fa fa-cogs'></i>
-            </a>
+
             <Popconfirm
               title='Xoá?'
               onConfirm={() => {
@@ -160,7 +176,6 @@ const UsersList = () => {
         </div>
       </div>
       {modalVisible ? <ModalItem /> : <></>}
-      {modalAreaInfoVisible ? <AreaInfoModal /> : <></>}
     </>
   );
 };

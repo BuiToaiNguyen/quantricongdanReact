@@ -26,6 +26,10 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/general/homepageinfors' title='Ảnh trang chủ' hasBullet={true} />
       </AsideMenuItemWithSub>
 
+      <AsideMenuItemWithSub to='/new' title='Tin tức' icon='/media/icons/duotune/communication/com006.svg' fontIcon='bi-person'>
+        <AsideMenuItem to='/new/seagames' title='Thông tin SeaGames 31' hasBullet={true} />
+      </AsideMenuItemWithSub>
+
       <AsideMenuItemWithSub to='/traffic' title='Giao thông' icon='/media/icons/duotune/ecommerce/ecm006.svg' fontIcon='bi-person'>
         <AsideMenuItem to='/traffic/carpolicies' title='Chính sách đi xe' hasBullet={true} />
         <AsideMenuItem to='/traffic/carutilities' title='Tiện ích xe' hasBullet={true} />

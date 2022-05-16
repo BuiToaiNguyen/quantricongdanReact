@@ -11,7 +11,12 @@ const {Option} = Select;
 const PageHeader = (props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const [categories, setCategories] = useState([]);
+  const [placetypes, setPlaceTypes] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [communes, setCommunes] = useState([]);
+  const [provinceId, setProvinceId] = useState(null);
+  const [districtId, setDistrictId] = useState(null);
 
   useEffect(() => {
     form.resetFields();
@@ -21,16 +26,64 @@ const PageHeader = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await requestPOST(`api/v1/categories/search`, {
+      const res = await requestPOST(`api/v1/placetypes/search`, {
         pageNumber: 1,
         pageSize: 1000,
         orderBy: ['name'],
       });
-      if (res && res.data) setCategories(res.data);
+      if (res && res.data) setPlaceTypes(res.data);
     };
     fetchData();
     return () => {};
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await requestPOST(`api/v1/areas/search`, {
+        pageNumber: 1,
+        pageSize: 1000,
+        orderBy: ['name'],
+        level: 1,
+      });
+      if (res && res.data) setProvinces(res.data);
+    };
+    fetchData();
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (provinceId) {
+      const fetchData = async () => {
+        const res = await requestPOST(`api/v1/areas/search`, {
+          pageNumber: 1,
+          pageSize: 1000,
+          orderBy: ['name'],
+          level: 2,
+          parentId: provinceId,
+        });
+        if (res && res.data) setDistricts(res.data);
+      };
+      fetchData();
+    }
+    return () => {};
+  }, [provinceId]);
+
+  useEffect(() => {
+    if (districtId) {
+      const fetchData = async () => {
+        const res = await requestPOST(`api/v1/areas/search`, {
+          pageNumber: 1,
+          pageSize: 1000,
+          orderBy: ['name'],
+          level: 3,
+          parentId: districtId,
+        });
+        if (res && res.data) setCommunes(res.data);
+      };
+      fetchData();
+    }
+    return () => {};
+  }, [districtId]);
 
   const TimKiem = () => {
     const formData = form.getFieldsValue(true);
@@ -79,13 +132,57 @@ const PageHeader = (props) => {
                     <Input placeholder='' />
                   </FormItem>
                 </div>
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Lĩnh vực' name='categoryId'>
-                    <Select allowClear placeholder='Lĩnh vực'>
-                      {categories.map((item) => {
+                <div className='col-xl-6 col-lg-6'></div>
+                <div className='col-xl-4 col-lg-6'>
+                  <FormItem label='Tỉnh/Thành phố' name='provinceId'>
+                    <Select
+                      showSearch
+                      allowClear
+                      placeholder='Tỉnh/Thành phố'
+                      filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                      onChange={(val) => setProvinceId(val) + form.resetFields(['districtId', 'communeId'])}
+                    >
+                      {provinces.map((item) => {
                         return (
                           <Option key={item.id} value={item.id}>
-                            {item.name}
+                            {item.nameWithType}
+                          </Option>
+                        );
+                      })}
+                    </Select>
+                  </FormItem>
+                </div>
+                <div className='col-xl-4 col-lg-6'>
+                  <FormItem label='Quận/Huyện' name='districtId'>
+                    <Select
+                      showSearch
+                      allowClear
+                      placeholder='Quận/Huyện'
+                      filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                      onChange={(val) => setDistrictId(val) + form.resetFields(['communeId'])}
+                    >
+                      {districts.map((item) => {
+                        return (
+                          <Option key={item.id} value={item.id}>
+                            {item.nameWithType}
+                          </Option>
+                        );
+                      })}
+                    </Select>
+                  </FormItem>
+                </div>
+                <div className='col-xl-4 col-lg-6'>
+                  <FormItem label='Phường/Xã' name='communeId'>
+                    <Select
+                      showSearch
+                      allowClear
+                      placeholder='Phường/Xã'
+                      filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    >
+                      {communes.map((item) => {
+                        return (
+                          <Option key={item.id} value={item.id}>
+                            {item.nameWithType}
                           </Option>
                         );
                       })}
