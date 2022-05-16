@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {shallowEqual, useSelector, useDispatch} from 'react-redux';
-import {Form, Input, Select} from 'antd';
+import {Form, Input} from 'antd';
 
 import * as actionsModal from 'src/setup/redux/modal/Actions';
 
 const FormItem = Form.Item;
-const {Option} = Select;
 
 const PageHeader = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const PageHeader = (props) => {
           <div className='card card-body'>
             <Form form={form} hideRequiredMark autoComplete='off'>
               <div className='row'>
-                <div className='col-xl-6 col-lg-6'>
+                <div className='col-xl-12 col-lg-12'>
                   <FormItem label='Từ khoá' name='keywordSearch'>
                     <Input placeholder='' />
                   </FormItem>

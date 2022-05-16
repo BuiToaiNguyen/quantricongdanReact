@@ -20,7 +20,7 @@ const UsersPage = () => {
   return (
     <>
       <div className='card card-xl-stretch mb-xl-9'>
-        <PageHeader title='Thông tin SEA Games 31' />
+        <PageHeader title='Danh sách loại nhà' />
         <ItemsList />
       </div>
     </>

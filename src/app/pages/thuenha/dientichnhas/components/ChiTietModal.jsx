@@ -1,36 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {shallowEqual, useSelector, useDispatch} from 'react-redux';
-import SunEditor, {buttonList} from 'suneditor-react';
-import moment from 'moment';
 
-import {Form, Input, Select, Spin, Upload, DatePicker} from 'antd';
+import {Form, Input, Select, Spin, DatePicker} from 'antd';
 import {Modal, Button} from 'react-bootstrap';
 import {toast} from 'react-toastify';
 
 import * as actionsModal from 'src/setup/redux/modal/Actions';
-import {requestPOST, requestGET, requestPUT, API_URL, FILE_URL} from 'src/utils/baseAPI';
-import ImageUpload from 'src/app/components/ImageUpload';
-
-import {handleImage} from 'src/utils/utils';
-import 'src/_metronic/assets/sass/suneditor.min.css';
+import {requestPOST, requestGET, requestPUT} from 'src/utils/baseAPI';
 
 const FormItem = Form.Item;
 
-const optionsEditor = {
-  mode: 'classic',
-  rtl: false,
-  katex: 'window.katex',
-  height: '250px',
-  imageWidth: '50%',
-  imageHeight: '50%',
-  tabDisable: false,
-  buttonList: [['undo', 'redo', 'font', 'fontSize', 'bold', 'underline', 'italic', 'fontColor', 'outdent', 'indent', 'list', 'link', 'image']],
-};
+const {TextArea} = Input;
 
 const ModalItem = (props) => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.accessToken);
-
   const dataModal = useSelector((state) => state.modal.dataModal);
   const modalVisible = useSelector((state) => state.modal.modalVisible);
   const id = dataModal?.id ?? null;
@@ -38,20 +21,14 @@ const ModalItem = (props) => {
   const [form] = Form.useForm();
 
   const [loadding, setLoadding] = useState(false);
-  const [image, setImage] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoadding(true);
-      const res = await requestGET(`api/v1/seagames/${id}`);
+      const res = await requestGET(`api/v1/dientichnhas/${id}`);
 
       if (res && res.data) {
         form.setFieldsValue(res.data);
-        setImage(handleImage(res.data?.image ?? '', FILE_URL));
-
-        if (res.data.date) {
-          form.setFieldsValue({date: moment(res.data.date)});
-        }
       }
       setLoadding(false);
     };
@@ -73,22 +50,12 @@ const ModalItem = (props) => {
     const values = await form.validateFields();
 
     try {
-      let arrImage = [];
-      image.forEach((i) => {
-        if (i.response) {
-          arrImage.push(i.response.data[0].url);
-        } else {
-          arrImage.push(i.path);
-        }
-      });
-      form.setFieldsValue({image: arrImage.join('##')});
-
       const formData = form.getFieldsValue(true);
       if (id) {
         formData.id = id;
       }
 
-      const res = id ? await requestPUT(`api/v1/seagames/${id}`, formData) : await requestPOST(`api/v1/seagames`, formData);
+      const res = id ? await requestPUT(`api/v1/dientichnhas/${id}`, formData) : await requestPOST(`api/v1/dientichnhas`, formData);
       if (res) {
         toast.success('Cập nhật thành công!');
         dispatch(actionsModal.setRandom());
@@ -121,40 +88,18 @@ const ModalItem = (props) => {
             <Form form={form} layout='vertical' /* initialValues={initData} */ autoComplete='off'>
               <div className='row'>
                 <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Tên' name='title' rules={[{required: true, message: 'Không được để trống!'}]}>
+                  <FormItem label='Tên' name='name' rules={[{required: true, message: 'Không được để trống!'}]}>
                     <Input placeholder='' />
                   </FormItem>
                 </div>
                 <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Tác giả' name='actor'>
+                  <FormItem label='Mã' name='code' rules={[{required: true, message: 'Không được để trống!'}]}>
                     <Input placeholder='' />
                   </FormItem>
                 </div>
-
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Nguồn' name='source'>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
-
                 <div className='col-xl-12 col-lg-12'>
-                  <FormItem label='Nội dung' name='content'>
-                    <SunEditor setContents={form.getFieldValue('content') ? form.getFieldValue('content') : ''} setOptions={optionsEditor} />
-                  </FormItem>
-                </div>
-              </div>
-
-              <div className='row '>
-                <div className='col col-xl-12'>
-                  <FormItem label='Ảnh'>
-                    <ImageUpload
-                      URL={`${API_URL}/api/v1/attachments`}
-                      fileList={image}
-                      onChange={(e) => setImage(e.fileList)}
-                      headers={{
-                        Authorization: `Bearer ${token}`,
-                      }}
-                    />
+                  <FormItem label='Mô tả' name='description'>
+                    <TextArea rows={4} placeholder='' />
                   </FormItem>
                 </div>
               </div>
