@@ -96,7 +96,7 @@ const UsersList = () => {
               {/* begin:: Avatar */}
               <div className='symbol overflow-hidden me-3'>
                 <div>
-                  {record.image ? (
+                  {/* {record.image ? (
                     <img
                       src={record.image.includes('https://') || record.image.includes('http://') ? record.image : toAbsoluteUrl(`/${record.image}`)}
                       alt={record.name}
@@ -110,7 +110,9 @@ const UsersList = () => {
                         `text-${record.isVerified ? 'danger' : ''}`
                       )}
                     ></div>
-                  )}
+                  )} */}
+
+                  
                 </div>
               </div>
             </div>

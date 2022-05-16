@@ -29,7 +29,7 @@ const UsersList = () => {
       try {
         setLoading(true);
         const res = await requestPOST(
-          `api/v1/seagames/search`,
+          `api/v1/mucgiathuenhas/search`,
           _.assign(
             {
               advancedSearch: {
@@ -65,7 +65,7 @@ const UsersList = () => {
         break;
 
       case 'delete':
-        var res = await requestDELETE(`api/v1/seagames/${item.id}`);
+        var res = await requestDELETE(`api/v1/mucgiathuenhas/${item.id}`);
         if (res) {
           toast.success('Thao tác thành công!');
           dispatch(actionsModal.setRandom());
@@ -83,44 +83,24 @@ const UsersList = () => {
   };
 
   const columns = [
+    
     {
-      title: 'Ảnh',
-      width: '10%',
-      dataIndex: 'image',
-      key: 'image',
-      render: (text, record, index) => {
-        return (
-          <>
-            <div className='d-flex align-items-center'>
-              {/* begin:: Avatar */}
-              <div className='symbol overflow-hidden me-3'>
-                <div>
-                  {record.image ? (
-                    <img
-                      src={record.image.includes('https://') || record.image.includes('http://') ? record.image : toAbsoluteUrl(`/${record.image}`)}
-                      alt={record.name}
-                      className='w-100 symbol-label'
-                    />
-                  ) : (
-                    <div
-                      className={clsx(
-                        'symbol-label fs-3',
-                        `bg-light-${record.isVerified ? 'danger' : ''}`,
-                        `text-${record.isVerified ? 'danger' : ''}`
-                      )}
-                    ></div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </>
-        );
-      },
+      title: 'Tên',
+      dataIndex: 'name',
+      key: 'name',
+
     },
     {
-      title: 'Tiêu đề',
-      dataIndex: 'title',
-      key: 'title',
+      title: 'Mã',
+      dataIndex: 'code',
+      key: 'code',
+
+    },
+    {
+      title: 'Mô Tả',
+      dataIndex: 'description',
+      key: 'description',
+
     },
 
     {

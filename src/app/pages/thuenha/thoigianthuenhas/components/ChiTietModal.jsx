@@ -43,7 +43,7 @@ const ModalItem = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoadding(true);
-      const res = await requestGET(`api/v1/seagames/${id}`);
+      const res = await requestGET(`api/v1/thoigianthuenhas/${id}`);
 
       if (res && res.data) {
         form.setFieldsValue(res.data);
@@ -88,7 +88,7 @@ const ModalItem = (props) => {
         formData.id = id;
       }
 
-      const res = id ? await requestPUT(`api/v1/seagames/${id}`, formData) : await requestPOST(`api/v1/seagames`, formData);
+      const res = id ? await requestPUT(`api/v1/thoigianthuenhas/${id}`, formData) : await requestPOST(`api/v1/thoigianthuenhas`, formData);
       if (res) {
         toast.success('Cập nhật thành công!');
         dispatch(actionsModal.setRandom());
@@ -120,44 +120,27 @@ const ModalItem = (props) => {
           {!loadding && (
             <Form form={form} layout='vertical' /* initialValues={initData} */ autoComplete='off'>
               <div className='row'>
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Tên' name='title' rules={[{required: true, message: 'Không được để trống!'}]}>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Tác giả' name='actor'>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
-
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Nguồn' name='source'>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
-
                 <div className='col-xl-12 col-lg-12'>
-                  <FormItem label='Nội dung' name='content'>
-                    <SunEditor setContents={form.getFieldValue('content') ? form.getFieldValue('content') : ''} setOptions={optionsEditor} />
+                  <FormItem label='Tên' name='name' rules={[{required: true, message: 'Không được để trống!'}]}>
+                    <Input placeholder='' />
                   </FormItem>
                 </div>
+                <div className='col-xl-12 col-lg-12'>
+                  <FormItem label='Tác giả' name='code'>
+                    <Input placeholder='' />
+                  </FormItem>
+                </div>
+                <div className='col-xl-12 col-lg-12'>
+                  <FormItem label='Mô tả' name='description'>
+                    <Input placeholder='' />
+                  </FormItem>
+                </div>
+
+
+
               </div>
 
-              <div className='row '>
-                <div className='col col-xl-12'>
-                  <FormItem label='Ảnh'>
-                    <ImageUpload
-                      URL={`${API_URL}/api/v1/attachments`}
-                      fileList={image}
-                      onChange={(e) => setImage(e.fileList)}
-                      headers={{
-                        Authorization: `Bearer ${token}`,
-                      }}
-                    />
-                  </FormItem>
-                </div>
-              </div>
+          
             </Form>
           )}
         </Spin>
