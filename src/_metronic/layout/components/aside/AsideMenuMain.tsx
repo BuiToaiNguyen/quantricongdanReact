@@ -102,6 +102,11 @@ export function AsideMenuMain() {
         <AsideMenuItem to='/thuenha/mucgiathuenhas' title='Mức giá thuê nhà' hasBullet={true} />
         <AsideMenuItem to='/thuenha/thoigianthuenhas' title='Thời gian thuê nhà' hasBullet={true} />
       </AsideMenuItemWithSub>
+      <AsideMenuItemWithSub to='/book' title='Sách' icon='/media/icons/duotune/electronics/elc002.svg' fontIcon='bi-person'>
+        <AsideMenuItem to='/book/category' title='Danh Mục Sách' hasBullet={true} />
+        <AsideMenuItem to='/book/managebook' title='Quản Lí Sách' hasBullet={true} />
+        <AsideMenuItem to='/book/author' title='Tác Giả Sách' hasBullet={true} />
+      </AsideMenuItemWithSub>
 
       <AsideMenuItemWithSub to='/medical' title='Y tế' icon='/media/icons/duotune/medicine/med001.svg' fontIcon='bi-person'>
         <AsideMenuItem to='/medical/medicalhotlines' title='Danh bạ khẩn cấp' hasBullet={true} />

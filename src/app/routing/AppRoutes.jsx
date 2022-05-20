@@ -30,6 +30,7 @@ const AppRoutes = () => {
   useEffect(() => {
     if (accessToken) {
       dispatch(actionsGlobal.listenNotifications(accessToken));
+      // console.log("nguyen tes")
     } else {
       if (connection) {
         connection.stop().then((e) => {

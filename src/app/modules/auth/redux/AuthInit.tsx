@@ -9,20 +9,22 @@ import {RootState} from '../../../../setup';
 const mapState = (state: RootState) => ({auth: state.auth});
 const connector = connect(mapState, auth.actions);
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
 const AuthInit: FC<PropsFromRedux> = (props) => {
   const didRequest = useRef(false);
   const dispatch = useDispatch();
   const [showSplashScreen, setShowSplashScreen] = useState(true);
   const accessToken = useSelector<RootState>(({auth}) => auth.accessToken, shallowEqual);
-
+  console.log()
   // We should request user by authToken before rendering the application
   useEffect(() => {
     const requestUser = async () => {
       try {
         if (!didRequest.current) {
-          const {data: user} = await getUserByToken();
-          dispatch(props.fulfillUser(user));
+          const {data:userday} = await getUserByToken();
+          // const x = await getUserByToken();
+          // console.log("nguyen helo",x)
+
+          dispatch(props.fulfillUser(userday));
           const {data: permissions} = await getCurrentPermissions();
           dispatch(props.fulfillPermissions(permissions));
         }
@@ -41,6 +43,7 @@ const AuthInit: FC<PropsFromRedux> = (props) => {
     if (accessToken) {
       requestUser();
     } else {
+      
       dispatch(props.logout());
       setShowSplashScreen(false);
     }

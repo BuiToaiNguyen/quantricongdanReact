@@ -41,9 +41,10 @@ export function Login() {
       setLoading(true);
       setTimeout(() => {
         login(values.userName, values.password)
-          .then(({data: {token}}) => {
+          .then((res) => {
             setLoading(false);
-            dispatch(auth.actions.login(token));
+            // console.log("NGUYỆN TEST",res)
+            dispatch(auth.actions.login(res.data.token));
           })
           .catch(() => {
             setLoading(false);

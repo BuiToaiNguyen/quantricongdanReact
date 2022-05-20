@@ -31,7 +31,7 @@ const PrivateRoutes = () => {
   const TravelPage = lazy(() => import('../pages/travel/TravelPage'));
   const NewPage = lazy(() => import('../pages/new/NewPage'));
   const ThueNhaPage = lazy(() => import('../pages/thuenha/ThueNhaPage'));
-
+const BookPage = lazy(() => import('../pages/book/BookPage'));
   //const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'));
 
   return (
@@ -78,6 +78,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <ThueNhaPage />
+            </SuspensedView>
+          }
+        />
+            <Route
+          path='book/*'
+          element={
+            <SuspensedView>
+              <BookPage />
             </SuspensedView>
           }
         />

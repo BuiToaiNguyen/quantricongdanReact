@@ -16,6 +16,7 @@ export const requestGET = async (URL) => {
       },
       url: `${API_URL}/${URL}`,
     });
+    console.log(res)
     return res.data;
   } catch (error) {
     return null;

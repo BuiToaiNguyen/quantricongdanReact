@@ -4,7 +4,7 @@ export const ToSlug = (str) => {
     str = str.toLowerCase();
 
     var from = 'àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ·/_,:;';
-    var to = 'aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyd------';
+    var to =   'aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyd------';
     for (var i = 0, l = from.length; i < l; i++) {
       str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
     }
