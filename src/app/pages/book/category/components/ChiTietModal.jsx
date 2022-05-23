@@ -117,16 +117,7 @@ const ModalItem = (props) => {
                     <Input placeholder='' />
                   </FormItem>
                 </div>
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Tuổi' name='age' rules={[{required: true, message: 'Không được để trống!'}]}>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
-                <div className='col-xl-6 col-lg-6'>
-                  <FormItem label='Quê Quán' name='address' rules={[{required: true, message: 'Không được để trống!'}]}>
-                    <Input placeholder='' />
-                  </FormItem>
-                </div>
+           
 
                 <div className='col-xl-12 col-lg-12'>
                   <FormItem label='Mô tả' name='description'>

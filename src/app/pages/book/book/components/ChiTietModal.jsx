@@ -154,7 +154,7 @@ const ModalItem = (props) => {
                       fieldNames={{
                         label: 'nameAuthor',
                         value: 'id',
-                        children:[],
+                        children:{},
                       }}
                       placeholder='Chọn tác giả'
                       expandTrigger='hover'
@@ -170,7 +170,7 @@ const ModalItem = (props) => {
                       fieldNames={{
                         label: 'nameCate',
                         value: 'id',
-                        children: [],
+                        children: {},
                       }}
                       placeholder='Chọn danh mục'
                       expandTrigger='hover'

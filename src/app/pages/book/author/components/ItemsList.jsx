@@ -33,7 +33,7 @@ const UsersList = () => {
           _.assign(
             {
               advancedSearch: {
-                fields: ['title'],
+                fields: ['nameAuthor'],
                 keyword: dataSearch?.keywordSearch ?? null,
               },
               pageNumber: offset,
@@ -84,7 +84,7 @@ const UsersList = () => {
 
   const columns = [
     {
-    title: 'Ảnh Danh Mục',
+    title: 'Ảnh tác giả',
     width: '10%',
     dataIndex: 'image',
     key: 'image',
@@ -118,7 +118,7 @@ const UsersList = () => {
     },
   },
     {
-      title: 'Tên Danh Mục ',
+      title: 'Tên tác giả ',
       dataIndex: 'nameAuthor',
       key: 'name',
 

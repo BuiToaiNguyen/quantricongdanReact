@@ -13,6 +13,7 @@ import {ErrorsPage} from '../modules/errors/ErrorsPage';
 import {Logout, AuthPage} from '../modules/auth';
 import {App} from '../App';
 import * as actionsGlobal from 'src/setup/redux/global/Actions';
+import HomePage from '../pages/home/HomePage';
 
 /**
  * Base URL of the website.
@@ -23,7 +24,8 @@ const {PUBLIC_URL} = process.env;
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
-  const isAuthorized = useSelector(({auth}) => auth.user, shallowEqual);
+  // const isAuthorized = useSelector(({auth}) => auth.user, shallowEqual);
+  const isAuthorized = true
   const connection = useSelector((state) => state.global.connection);
   const accessToken = useSelector((state) => state.auth.accessToken);
 
@@ -48,6 +50,8 @@ const AppRoutes = () => {
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
+          <Route path='home' element={<HomePage />} />
+
           {isAuthorized ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
@@ -62,6 +66,7 @@ const AppRoutes = () => {
             </>
           )}
         </Route>
+
       </Routes>
     </BrowserRouter>
   );

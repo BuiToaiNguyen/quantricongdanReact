@@ -33,7 +33,7 @@ const UsersList = () => {
           _.assign(
             {
               advancedSearch: {
-                fields: ['title'],
+                fields: ['nameCate'],
                 keyword: dataSearch?.keywordSearch ?? null,
               },
               pageNumber: offset,
