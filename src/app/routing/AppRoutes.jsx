@@ -47,6 +47,7 @@ const AppRoutes = () => {
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
+          
           {isAuthorized ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
