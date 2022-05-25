@@ -56,7 +56,7 @@ const AppRoutes = () => {
             <>
               <Route path='/*' element={<PrivateRoutes />} />
               {/* <Route index element={<Navigate to='/dashboard' />} /> */}
-              <Route index element={<Navigate to='/general/seagames' />} />
+              <Route index element={<Navigate to='/home' />} />
               
             </>
           ) : (

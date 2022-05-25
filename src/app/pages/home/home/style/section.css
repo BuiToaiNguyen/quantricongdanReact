@@ -1,0 +1,60 @@
+.container__gridsection {
+  width: 100vw;
+  overflow-x: hidden;
+}
+.grid__section {
+  height: 600px;
+  width: 100vw;
+}
+.box__gridsection {
+  width: 3000px;
+  height: 600px;
+  display: flex;
+  justify-content: space-around;
+  animation: fadeLeft 60s linear infinite;
+}
+@keyframes fadeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-850px);
+  }
+}
+.grid__img {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.grid__item {
+  width: 300px;
+}
+.grid__img img {
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+}
+.grid__title {
+}
+.grid__bottom {
+  display: flex;
+  margin-top: 32px;
+}
+.logo__grid {
+  margin: 23px 0;
+  width: 62px;
+  margin-right: 12px;
+  height: 49px;
+}
+.grid__title h2 {
+  font-size: 24px;
+  padding: 24px 0;
+}
+.grid__title p {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 200;
+}
+.section__carousel{
+  margin:32px 0;
+}
