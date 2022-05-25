@@ -268,3 +268,9 @@ cursor: pointer;
 .feature__small__item{
   margin:32px 0;
 }
+.line__red{
+  height: 4px;
+  width: 24px;
+  background-color: red;
+  
+}
