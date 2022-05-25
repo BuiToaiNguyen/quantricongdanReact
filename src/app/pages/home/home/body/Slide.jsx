@@ -56,7 +56,7 @@ const Slide = () => {
   return (
     <div className='slide'>
       <Carousel arrows {...settings} autoplay>
-        <div class='item__slide'>
+        <div className='item__slide'>
           <img src='https://cdn-www.vinid.net/5e401820-1400-x-520_-1.jpg' alt='aaa' className='img__silde' />
         </div>
         <div>

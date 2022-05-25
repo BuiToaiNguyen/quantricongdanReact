@@ -41,8 +41,8 @@ const HomeStatic = () => {
     <div className='home__static__section'>
       {/*  */}
       <div className='home__static__header'>
-        {home_static.map((item) => (
-          <HomeStaticItem link_img={item.link_img} title1={item.title1} title2={item.title2} />
+        {home_static.map((item,index) => (
+          <HomeStaticItem link_img={item.link_img} title1={item.title1} title2={item.title2} key={index}/>
         ))}
       </div>
       <div className='home__static__down'>

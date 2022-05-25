@@ -10,10 +10,10 @@ const IntroTwo = () => {
         <h2>
           VinID là siêu ứng dụng thông minh, giải quyết mọi nhu cầu hàng ngày của người Việt, giúp cuộc sống của họ trở nên tiện lợi và tiết kiệm hơn.
         </h2>
-        <div className='btn__more'>
+        <a className='btn__more'>
           Tìm Hiểu Thêm
           <i className='bi bi-arrow-right arrow__more'></i>
-        </div>
+        </a>
       </div>
       <div className='col-6'>
         <div className='intro__two__img'>

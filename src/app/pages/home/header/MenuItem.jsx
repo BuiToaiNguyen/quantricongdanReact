@@ -5,7 +5,7 @@ const MenuItem = ({title, submenu, setActive, keykey, active}) => {
     <>
       {submenu ? (
         <li className='item__menu' onClick={() => setActive(keykey)}>
-          <a href='#' class='link__menu'>
+          <a href='#' className='link__menu'>
             {title}
             <i className='bi bi-caret-down-fill icon__downmenu'></i>
           </a>
@@ -13,9 +13,9 @@ const MenuItem = ({title, submenu, setActive, keykey, active}) => {
 
           <div className='sub__menu'>
             <ul className='list__submenu'>
-              {submenu.map((item) => (
-                <li className='item__submenu'>
-                  <a href='#' class='link__submenu'>
+              {submenu.map((item,index) => (
+                <li className='item__submenu' key={index}>
+                  <a href='#' className='link__submenu'>
                     {item}
                   </a>
                 </li>
@@ -27,7 +27,7 @@ const MenuItem = ({title, submenu, setActive, keykey, active}) => {
         <>
           {' '}
           <li className='item__menu' onClick={() => setActive(keykey)}>
-            <a href='#' class='link__menu'>
+            <a href='#' className='link__menu'>
               {title}
             </a>
             {active == keykey && <div className='line__menu'></div>}

@@ -5,6 +5,10 @@ import HomeStatic from './HomeStatic';
 import IntroTwo from './IntroTwo';
 import GridSection from './GridSection';
 import WithCarousel from './WithCarousel';
+import ThreeCol from './ThreeCol';
+import Final from './Final';
+import FeatureSmall from './FeatureSmall';
+import DownloadApp from './DownloadApp';
 const Body = () => {
   return (
     <>
@@ -13,6 +17,9 @@ const Body = () => {
       <IntroTwo />
       <GridSection />
       <WithCarousel />
+      <ThreeCol/>
+      <Final/>
+      <DownloadApp/>
     </>
   );
 };

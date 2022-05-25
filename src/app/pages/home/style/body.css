@@ -108,7 +108,7 @@
   margin-bottom: 36px;
 }
 .btn__more {
-  width: 150px;
+  width: 175px;
   height: 50px;
   background-color: #dc2323;
   display: flex;
@@ -120,6 +120,10 @@
   color: white;
   font-weight: 600;
   margin: 36px 0;
+  cursor: pointer;
+}
+.btn__more:hover{
+    color:white
 }
 .arrow__more {
   font-size: 20px;
