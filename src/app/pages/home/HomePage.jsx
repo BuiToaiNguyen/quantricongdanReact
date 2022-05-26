@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header/Header';
 import '../home/style/allstyle.css';
 import Body from './body/Body';
+import Footer from './footer/Footer';
 const HomePage = () => {
   return (
     <>
@@ -11,6 +12,7 @@ const HomePage = () => {
       <div className='container__body'>
         <Body />
       </div>
+      <Footer/>
     </>
   );
 };

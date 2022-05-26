@@ -5,8 +5,8 @@ const FeatureSmallItem = ({linkImg,title,date}) => {
     <div className='col-6 feature__small__item'>
     <div className='row'>
       <div className='col-6'>
-        <a href='#' className='featuresmall_header__link'>
-          <img className='featuresmall__header__img' src={linkImg} alt='' />
+        <a href='#' className='featuresmall_header__link '>
+          <img className='featuresmall__header__img hover__zoom__in__out' src={linkImg} alt='' />
         </a>
       </div>
       <div className='col-6 box__featuresmall__right'>

@@ -3,8 +3,8 @@ import '../style/header.css';
 import HeaderMenu from './HeaderMenu';
 const Header = () => {
   return (
-    <div className='row header__home'>
-      <div className=' col-5 header__left'>
+    <div className='header__home'>
+      <div className=' header__left'>
         <div className='logo'>
           <a href='#'>
             <img src='https://vinid.net/wp-content/themes/vinid-child/assets/img/vinid_logo_v1.png' alt='ảnh logo' style={{width: '100px'}} />
@@ -51,7 +51,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className=' col-7 header__right'>
+      <div className=' header__right'>
         <HeaderMenu />
 
         <a className='btn btn__downApp' href='#'>

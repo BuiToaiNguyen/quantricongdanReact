@@ -3,6 +3,9 @@
   height: 99px;
   margin: 0 auto;
   padding: 0 40px;
+  position: fixed;
+  z-index: 999;
+  background-color: white;
 }
 
 a {
@@ -24,4 +27,7 @@ p {
 }
 #kt_body {
   width: 100%;
+}
+.figure{
+    overflow: hidden;
 }
